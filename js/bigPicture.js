@@ -8,7 +8,8 @@ function bigPicture() {
   const scaleDecreaseButton = document.querySelector('.scale__control--smaller');
   const scaleIncreaseButton = document.querySelector('.scale__control--bigger');
   const previewPicture = document.querySelector('.img-upload__preview img');
-
+  const minScl =25;
+  const maxScl =100;
   function closeImgUpload() {
     imgUpload.classList.add('hidden');
     document.removeEventListener('keydown', escapeKeyHandler);
@@ -29,19 +30,19 @@ function bigPicture() {
   closeImgUploadButton.addEventListener('click', closeImgUpload);
   checkForm();
 
-  function setScale(scl) {
-    scale.value=`${String(scl)}%`;
-    previewPicture.style.transform=`scale(${scl/100})`;
+  function setScale(scalValue) {
+    scale.value=`${String(scalValue)}%`;
+    previewPicture.style.transform=`scale(${scalValue/100})`;
   }
 
   function decreaseScale() {
-    if (parseInt(scale.value, 10) > 25) {
+    if (parseInt(scale.value, 10) > minScl) {
       setScale((parseInt(scale.value, 10)) - 25);
     }
   }
 
   function increaseScale() {
-    if (parseInt(scale.value, 10) < 100) {
+    if (parseInt(scale.value, 10) < maxScl) {
       setScale((parseInt(scale.value, 10)) + 25);
     }
   }
@@ -63,8 +64,8 @@ function bigPicture() {
     slider.noUiSlider.updateOptions({
       start: [max],
       range: {
-        'min': min,
-        'max': max
+        min,
+        max
       },
       step:step
     });
