@@ -1,4 +1,4 @@
-const drawPic = function(photos) {
+function drawPic(photos) {
   const pictemp = document.querySelector('#picture').content;
   const picture = pictemp.querySelector('.picture');
   const pictures = document.querySelector('.pictures');
@@ -14,6 +14,6 @@ const drawPic = function(photos) {
     piece.appendChild(newPic);
   }
   pictures.appendChild(piece);
-};
+}
 export {drawPic};
 
